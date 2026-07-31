@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<!-- saved from url=(0037)http://127.0.0.1:5500/calculator.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+<style>
+    .calculator{
+        border: 5px solid black;
+        border-radius: 1rem;
+        width: 300px;
+        height: auto;
+        justify-content: center;
+        text-align: center;
+        position: fixed; 
+      top:50%;
+      left:50%;
+      transform: translate(-50%, -50%); /* for center remove extra spacing*/
+      display: inline-block; 
+      background: linear-gradient(rgba(46, 45, 45, 0.14),grey);
+    }
+    button{
+        width: 60px;
+        height: 50px;
+        /* display: inline-block;
+        text-align: center;
+        justify-content: center; */
+        font-size: medium;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+    } 
+    input{
+          height: 50px;
+        width: 190px;
+    }
+
+</style></head>
+
+<body>
+    <div class="calculator">
+        <h1> Calculator</h1>
+        <input type="text" id="display" placeholder="Enter input" readonly="">
+        <button onclick="backspace()">⌫</button>
+      
+        <br>
+        <div class="button">
+            <button onclick="add(9)">9</button>
+             <button onclick="add(8)">8</button>
+              <button onclick="add(7)">7</button>
+                <button onclick="add(&#39;/&#39;)">÷</button>
+        </div>
+        
+         <div class="button">
+            <button onclick="add(6)">6</button>
+             <button onclick="add(5)">5</button>
+              <button onclick="add(4)">4</button>
+               <button onclick="add(&#39;-&#39;)">-</button>
+           
+        </div>
+        
+         <div class="button">
+            <button onclick="add(3)">3</button>
+             <button onclick="add(2)">2</button>
+              <button onclick="add(1)">1</button>
+               <button onclick="add(&#39;*&#39;)">x</button>
+        </div>
+        
+           <div class="button">
+           
+             <button onclick="clearDisplay()">C</button>
+              <button onclick="add(0)">0</button>
+              <button onclick="calculate()">=</button>
+                <button onclick="add(&#39;+&#39;)">+</button>
+        </div>
+      
+    </div>
+    <script>
+        let display= document.getElementById("display");
+        function add(value){
+            display.value += value;
+        }
+
+        function clearDisplay(){
+            display.value = "";
+        }
+        function calculate(){
+            try{
+                display.value = eval(display.value);
+            }catch{
+                 display.value = "ERROR";
+            }
+        }
+        function backspace(){
+              display.value = display.value.slice(0, -1);
+        }
+    </script>
+
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+
+
+</body></html>
